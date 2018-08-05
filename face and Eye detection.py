@@ -1,69 +1,6 @@
 
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
-
-
-# In[3]:
-
-
 import cv2
-
-
-# # Face Detection
-
-# In[5]:
-
-
-faceclassifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-image = cv2.imread("deepak.jpg")
-gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-faces = faceclassifier.detectMultiScale(gray,1.3,5)
-
-if faces is ():
-    print("No Face")
-for (x,y,w,h) in faces:
-    cv2.rectangle(image,(x,y),(x+w,y+h),(127,89,102),2)
-    cv2.imshow('Face Detection',image)
-    cv2.waitKey(0)
-    
-cv2.destroyAllWindows()
-
-
-# ## Eye Detection with Face
-
-# In[7]:
-
-
-faceclassifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-image = cv2.imread("deepak.jpg")
-gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-faces = faceclassifier.detectMultiScale(gray,1.3,5)
-eyeclassifier = cv2.CascadeClassifier('haarcascade_eye.xml')
-if faces is ():
-    print("No Face")
-
-    
-for (x,y,w,h) in faces:
-    cv2.rectangle(image,(x,y),(x+w,y+h),(127,89,102),2)
-    cv2.imshow('Face Detection',image)
-    cv2.waitKey(0)
-    roi_gray = gray[y:y+h,x:x+w]
-    roi_color = image[y:y+h,x:x+w]
-    eyes = eyeclassifier.detectMultiScale(roi_gray)
-    for (ex,ey,ew,eh) in eyes:
-        cv2.rectangle(roi_color,(ex,ey),(ex + ew,ey+ eh),(255,255,0),2)
-        cv2.imshow("img",image)
-        cv2.waitKey()
-    
-cv2.destroyAllWindows()
-
-
-# In[8]:
-
 
 faceclassifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 eyeclassifier = cv2.CascadeClassifier('haarcascade_eye.xml')
